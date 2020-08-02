@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :chats, only: [ :index , :show, :new, :create, :destroy ]
+  resources :chats, only: [ :index , :show, :create, :destroy ]
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end

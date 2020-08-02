@@ -10,11 +10,6 @@ class ChatsController < ApplicationController
   def show
   end
 
-  # GET /chats/new
-  def new
-    @chat = Chat.new
-  end
-
   # POST /chats
   def create
     @chat = Chat.new(chat_params)
@@ -24,7 +19,7 @@ class ChatsController < ApplicationController
         format.html { redirect_to @chat, notice: 'Chat was successfully created.' }
         format.json { render :show, status: :created, location: @chat }
       else
-        format.html { render :new }
+        format.html { redirect_to root_path, notice: 'Chat could not be created.'}
         format.json { render json: @chat.errors, status: :unprocessable_entity }
       end
     end

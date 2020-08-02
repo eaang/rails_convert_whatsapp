@@ -14,7 +14,7 @@
   <% end %>
 
 <div class="mb-6">
-    <%= form.label :txt_file, class: "label" %>
+    <%= form.label :txt_file, "Please upload a .txt file only!", class: "label" %>
     <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="1">
     <%= form.file_field :txt_file, direct_upload: true, data: { target: 'dropzone.input' } %>
     <div class="dropzone-msg dz-message needsclick text-gray-600">
