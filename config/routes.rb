@@ -1,11 +1,10 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :chats
-    authenticate :user, lambda { |u| u.admin? } do
-      mount Sidekiq::Web => '/sidekiq'
-    end
-
+  resources :chats, only: [ :index , :show, :new, :create, :destroy ]
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   devise_for :users
   root to: 'home#index'

@@ -1,4 +1,6 @@
-<%= form_with(model: chat, local: true) do |form| %>
+<!-- app/views/chats/_form.html.erb-->
+
+<%= form_with(model: chat, local: true, multipart: true) do |form| %>
   <% if chat.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(chat.errors.count, "error") %> prohibited this chat from being saved:</h2>
@@ -11,12 +13,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+<div class="mb-6">
+    <%= form.label :txt_file, class: "label" %>
+    <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="1">
+    <%= form.file_field :txt_file, direct_upload: true, data: { target: 'dropzone.input' } %>
+    <div class="dropzone-msg dz-message needsclick text-gray-600">
+      <h3 class="dropzone-msg-title">Drag here to upload or click here to browse</h3>
+      <span class="dropzone-msg-desc text-sm">2 MB file size maximum for free users.</span>
+      </div>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="mb-6">
+    <%= form.submit  class: "btn-default btn" %>
   </div>
 <% end %>
